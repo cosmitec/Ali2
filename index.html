@@ -875,6 +875,34 @@
         @keyframes hl-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
         .highlight-dot { transition: width .2s ease, background .2s ease; }
         @media (prefers-reduced-motion: reduce) { .highlight-slide.active .hl-slide-img { animation: none; } }
+        /* ===== عرض المنتج (البطاقات + نافذة التفاصيل) بخلفية بيضاء ===== */
+        body .prod-card, body #products-grid > .prod-card, body #products-grid .pc-img,
+        body #product-details-modal > div,
+        body #product-details-modal .bg-white,
+        body #product-details-modal [class~="bg-stone-50"], body #product-details-modal [class~="bg-stone-50/50"],
+        body #product-details-modal [class~="bg-stone-100"], body #product-details-modal [class~="bg-blue-50"],
+        body #product-details-modal [class~="bg-blue-50/60"], body #product-details-modal [class~="bg-blue-100/60"],
+        body #product-details-modal [class~="bg-pink-50"], body #product-details-modal .bg-blue-50\/60 {
+            background-color: #fff !important;
+            background-image: none !important;
+        }
+        body #products-grid .pc-img:has(img.img-fade:not(.loaded)) {
+            background: linear-gradient(90deg, #f1f1f1 25%, #fafafa 50%, #f1f1f1 75%) !important;
+            background-size: 200% 100% !important;
+        }
+
+        /* ===== نص الترحيب: لون فيروزي + حركة خفيفة، ونفس اللون لاسم المتجر في القمة ===== */
+        #welcome h2, #welcome h2 span, body #store-logo-container h1 { color: #26b1a8 !important; }
+        #welcome h2.show { animation: w-pop .6s ease forwards, w-sway 2.8s ease-in-out .6s infinite; }
+        @keyframes w-sway {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-6px) scale(1.03); }
+        }
+        @media (prefers-reduced-motion: reduce) { #welcome h2.show { animation: w-pop .6s ease forwards; } }
+        /* إخفاء أي أثر مشمشي حول صور المنتجات: عنصر الصورة نفسه أبيض */
+        body img.bg-white, body .prod-card img, body #product-details-modal img {
+            background-color: #fff !important;
+        }
     </style>
 
 </head>
