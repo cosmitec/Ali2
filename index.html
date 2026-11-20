@@ -784,29 +784,97 @@
 
 
     <style id="highlight-light-onion-background">
-        /* خلفية بصلي فاتح للموقع بالكامل مع الإبقاء على الفيروزي كلون أساسي */
+        /* خلفية مشمشية فاتحة للموقع بالكامل مع الإبقاء على الفيروزي كلون أساسي للعناصر */
         html, body {
-            background-color: #f7edf1 !important;
+            background-color: #fff1e3 !important;
         }
         body {
-            background: linear-gradient(180deg, #faf4f6 0%, #f5eaf0 52%, #f8f1f4 100%) fixed !important;
+            background: linear-gradient(180deg, #fff6ec 0%, #ffecd9 52%, #fff3e6 100%) fixed !important;
         }
         body > main {
             background: transparent !important;
         }
         #welcome {
-            background: linear-gradient(145deg, #fcf7f9 0%, #f4e7ed 100%) !important;
+            background: linear-gradient(145deg, #fff8f0 0%, #ffe9d4 100%) !important;
         }
         #welcome .w-tile {
-            border: 1px solid #ead6df !important;
+            border: 1px solid #f5d6b8 !important;
         }
         body header.sticky {
-            background: rgba(255, 252, 253, .97) !important;
+            background: rgba(255, 250, 244, .97) !important;
         }
         body header.sticky .header-top-row,
         body header.sticky .header-search-strip {
             background: transparent !important;
         }
+
+        /* ===== أماكن الصور المتحركة (فارغة حتى تضاف الصور من لوحة التحكم) ===== */
+        .highlight-slider {
+            border-color: #f3d2b2 !important;
+            background: linear-gradient(135deg, #fff4e8, #ffe8d2) !important;
+            box-shadow: 0 16px 34px -22px rgba(214, 140, 80, .35) !important;
+        }
+        .highlight-slider.is-empty { border: 2px dashed #efc79f !important; }
+        .highlight-slide .hl-slide-img.hl-off { display: none; }
+        .highlight-slide .hl-empty {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            color: #e8b88a; font-size: 2.8rem;
+        }
+        .highlight-slide.has-img .hl-empty { display: none; }
+        .highlight-slider:not(.has-multi) .highlight-arrow,
+        .highlight-slider:not(.has-multi) .highlight-dots { display: none !important; }
+        .highlight-dot.hl-hide { display: none; }
+        .hl-slot-thumb {
+            width: 120px; height: 72px; border-radius: 12px; border: 1px dashed #f0c9a3;
+            background: #fff4e8; object-fit: cover; flex-shrink: 0;
+        }
+        .hl-slot-thumb.empty { display: flex; align-items: center; justify-content: center; color: #e8b88a; font-size: 1.4rem; }
+        /* ===== توحيد كل الأجزاء بنفس اللون البصلي/المشمشي الفاتح ===== */
+        :root { --hl-apr: #fff1e3; --hl-apr-line: #f3d2b2; --hl-apr-deep: #ffe6cc; }
+        body header.sticky,
+        body header.sticky .header-top-row,
+        body header.sticky .header-search-strip { background: var(--hl-apr) !important; }
+        body header.sticky { border-bottom: 1px solid var(--hl-apr-line) !important; box-shadow: 0 8px 25px -20px rgba(214,140,80,.4) !important; }
+        body header.sticky .header-search-strip { border-top: 1px solid var(--hl-apr-line) !important; }
+        body footer { background: var(--hl-apr) !important; border-top: 1px solid var(--hl-apr-line) !important; }
+        body footer h3 { color: #17676a !important; }
+        body footer p { color: #6b8a88 !important; }
+        body .bg-white, body [class~="bg-white"],
+        body .bg-stone-50, body [class~="bg-stone-50"], body [class~="bg-stone-50/50"], body [class~="bg-stone-100"],
+        body [class~="bg-blue-50"], body [class~="bg-blue-100"], body [class~="bg-blue-50/30"], body [class~="bg-blue-50/50"],
+        body [class~="bg-blue-50/60"], body [class~="bg-blue-50/70"], body [class~="bg-blue-100/60"], body [class~="bg-pink-50"],
+        body #subcats-container, body .prod-card, body #products-grid > .prod-card, body #products-grid > .prod-skel,
+        body #products-grid .pc-img, body .cat-thumb, body .explore-banner,
+        body input, body select, body textarea,
+        #product-details-modal .bg-blue-50\/60, #cart-modal .bg-blue-50\/50, #cart-modal .bg-blue-50\/30 {
+            background-color: var(--hl-apr) !important;
+            background-image: none !important;
+        }
+        body [class~="bg-white/90"] { background-color: rgba(255,241,227,.9) !important; }
+        body [class~="bg-white/70"] { background-color: rgba(255,241,227,.7) !important; }
+        body .sub-btn.active { background: var(--hl-apr-deep) !important; }
+        body .border-blue-100, body .border-blue-200, body .border-stone-200, body .border-stone-100 { border-color: var(--hl-apr-line) !important; }
+        body .prod-card, body #products-grid > .prod-card { border-color: var(--hl-apr-line) !important; box-shadow: 0 8px 22px -16px rgba(214,140,80,.45) !important; }
+        body #subcats-container, body .explore-banner { border-color: var(--hl-apr-line) !important; }
+        .sk, #products-grid .pc-img:has(img.img-fade:not(.loaded)) {
+            background: linear-gradient(90deg, #ffe6cc 25%, #fff6ec 50%, #ffe6cc 75%) !important;
+            background-size: 200% 100% !important;
+        }
+
+        /* ===== سلايدر أسرع وأكثر ديناميكية: انزلاق + زووم خفيف ===== */
+        .highlight-slide {
+            transform: translateX(calc(var(--hl-dir, 1) * 9%)) scale(1.05);
+            transition: opacity .4s ease, transform .5s cubic-bezier(.22,.9,.3,1), visibility 0s linear .4s;
+        }
+        .highlight-slide.active {
+            opacity: 1; visibility: visible; transform: none;
+            transition: opacity .4s ease, transform .5s cubic-bezier(.22,.9,.3,1), visibility 0s;
+        }
+        .highlight-slide.leaving { transform: translateX(calc(var(--hl-dir, 1) * -9%)) scale(.98); }
+        .highlight-slide.active .hl-slide-img { animation: hl-zoom 3.2s ease-out both; }
+        @keyframes hl-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+        .highlight-dot { transition: width .2s ease, background .2s ease; }
+        @media (prefers-reduced-motion: reduce) { .highlight-slide.active .hl-slide-img { animation: none; } }
     </style>
 
 </head>
@@ -897,27 +965,16 @@
     <!-- المحتوى الرئيسي -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
  
-        <!-- بانر كوزمتك هاي لايت: خطوط زرقاء وبيضاء مع العبارة التسويقية والزهور -->
-        <!-- شريط صور كوزمتك هاي لايت: خانتان متحركتان يمكن استبدال روابط صورهما بسهولة -->
-        <section class="highlight-slider mb-8" id="highlight-slider" data-autoplay-interval="4500" aria-label="عروض كوزمتك هاي لايت">
+        <!-- أماكن الصور المتحركة: فارغة افتراضياً، وتُضاف الصور من لوحة التحكم > الإعدادات -->
+        <section class="highlight-slider is-empty mb-8" id="highlight-slider" data-autoplay-interval="2800" aria-label="صور العروض">
             <div class="highlight-slides" aria-live="off">
                 <article class="highlight-slide active" data-slide="0" aria-hidden="false">
-                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=85" alt="مجموعة مستحضرات تجميل وألوان مكياج" fetchpriority="high" decoding="async">
-                    <div class="highlight-overlay"></div>
-                    <div class="highlight-caption">
-                        <span class="highlight-kicker">HIGHLIGHT COSMETIC</span>
-                        <h2>كوزمتك هاي لايت</h2>
-                        <p>كل تفاصيل جمالج… بمكان واحد</p>
-                    </div>
+                    <img class="hl-slide-img hl-off" alt="صورة العرض الأولى" decoding="async">
+                    <div class="hl-empty"><i class="fa-regular fa-image"></i></div>
                 </article>
                 <article class="highlight-slide" data-slide="1" aria-hidden="true">
-                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1800&q=85" alt="فرش وأدوات مكياج وعناية بالجمال" loading="lazy" decoding="async">
-                    <div class="highlight-overlay"></div>
-                    <div class="highlight-caption">
-                        <span class="highlight-kicker">BEAUTY • CARE • STYLE</span>
-                        <h2>اكتشفي لمستج الخاصة</h2>
-                        <p>اختاري المفضل عندج وتألقّي كل يوم</p>
-                    </div>
+                    <img class="hl-slide-img hl-off" alt="صورة العرض الثانية" decoding="async">
+                    <div class="hl-empty"><i class="fa-regular fa-image"></i></div>
                 </article>
             </div>
             <button class="highlight-arrow prev" type="button" aria-label="الصورة السابقة" onclick="highlightSliderMove(-1)"><i class="fa-solid fa-chevron-right"></i></button>
@@ -931,68 +988,88 @@
         (function () {
             const root = document.getElementById('highlight-slider');
             if (!root) return;
-
             const slides = Array.from(root.querySelectorAll('.highlight-slide'));
             const dots = Array.from(root.querySelectorAll('.highlight-dot'));
-            if (slides.length < 2) return;
-
-            let active = Math.max(0, slides.findIndex((slide) => slide.classList.contains('active')));
+            let urls = slides.map(() => '');
+            let active = 0;
             let timer = null;
-            const delay = Math.max(2500, Number(root.dataset.autoplayInterval) || 4500);
+            const delay = Math.max(1800, Number(root.dataset.autoplayInterval) || 2800);
+            const filled = () => urls.map((u, i) => (u ? i : -1)).filter((i) => i >= 0);
 
-            function show(index) {
-                active = ((Number(index) % slides.length) + slides.length) % slides.length;
+            function show(index, dir) {
+                const prev = active;
+                const next = Math.max(0, Math.min(slides.length - 1, Number(index) || 0));
+                if (prev !== next) {
+                    root.style.setProperty('--hl-dir', String(dir || (next > prev ? -1 : 1)));
+                    const old = slides[prev];
+                    old.classList.add('leaving');
+                    setTimeout(() => old.classList.remove('leaving'), 650);
+                }
+                active = next;
                 slides.forEach((slide, i) => {
-                    const isActive = i === active;
-                    slide.classList.toggle('active', isActive);
-                    slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+                    const on = i === active;
+                    slide.classList.toggle('active', on);
+                    slide.setAttribute('aria-hidden', on ? 'false' : 'true');
                 });
                 dots.forEach((dot, i) => {
-                    const isActive = i === active;
-                    dot.classList.toggle('active', isActive);
-                    dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+                    const on = i === active;
+                    dot.classList.toggle('active', on);
+                    dot.setAttribute('aria-current', on ? 'true' : 'false');
                 });
             }
-
-            function stop() {
-                if (timer !== null) {
-                    window.clearTimeout(timer);
-                    timer = null;
-                }
+            function step(dir) {
+                const f = filled();
+                if (f.length < 2) return;
+                const pos = f.indexOf(active);
+                show(f[((pos < 0 ? 0 : pos) + dir + f.length) % f.length], -dir);
             }
-
+            function stop() { if (timer !== null) { clearTimeout(timer); timer = null; } }
             function start() {
                 stop();
-                const hasFocus = root.contains(document.activeElement);
-                if (document.hidden || root.matches(':hover') || hasFocus) return;
-                timer = window.setTimeout(() => {
-                    show(active + 1);
-                    start();
-                }, delay);
+                if (filled().length < 2) return;
+                if (document.hidden || root.matches(':hover') || root.contains(document.activeElement)) return;
+                timer = setTimeout(() => { step(1); start(); }, delay);
             }
 
-            window.highlightSliderGo = (index) => {
-                show(Number(index) || 0);
+            // تُستدعى من إعدادات المتجر: urls = [رابط الصورة 1، رابط الصورة 2] (النص الفارغ = مكان فارغ)
+            window.highlightSliderRender = (list) => {
+                urls = slides.map((_, i) => (list && typeof list[i] === 'string' ? list[i].trim() : ''));
+                slides.forEach((slide, i) => {
+                    const img = slide.querySelector('.hl-slide-img');
+                    if (urls[i]) {
+                        if (img.getAttribute('src') !== urls[i]) img.src = urls[i];
+                        img.classList.remove('hl-off');
+                    } else {
+                        img.removeAttribute('src');
+                        img.classList.add('hl-off');
+                    }
+                    slide.classList.toggle('has-img', !!urls[i]);
+                    if (dots[i]) dots[i].classList.toggle('hl-hide', !urls[i]);
+                });
+                const f = filled();
+                root.classList.toggle('is-empty', f.length === 0);
+                root.classList.toggle('has-multi', f.length > 1);
+                show(f.length && f.indexOf(active) < 0 ? f[0] : active);
                 start();
             };
-            window.highlightSliderMove = (step) => {
-                show(active + (Number(step) || 0));
-                start();
-            };
+            window.highlightSliderGo = (i) => { show(i); start(); };
+            window.highlightSliderMove = (d) => { step(Number(d) || 0); start(); };
 
             root.addEventListener('mouseenter', stop);
             root.addEventListener('mouseleave', start);
             root.addEventListener('focusin', stop);
-            root.addEventListener('focusout', (event) => {
-                if (!root.contains(event.relatedTarget)) start();
-            });
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) stop();
-                else start();
-            });
-
-            show(active);
-            start();
+            root.addEventListener('focusout', (e) => { if (!root.contains(e.relatedTarget)) start(); });
+            document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+            let sx = null;
+            root.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; stop(); }, { passive: true });
+            root.addEventListener('touchend', (e) => {
+                if (sx === null) return;
+                const dx = e.changedTouches[0].clientX - sx;
+                sx = null;
+                if (Math.abs(dx) > 40) step(dx > 0 ? 1 : -1);
+                start();
+            }, { passive: true });
+            show(0);
         })();
         </script>
 
@@ -1409,6 +1486,45 @@
                         </div>
                     </div>
                     <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                        <h4 class="text-base font-black text-stone-900 mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-images text-blue-700"></i> الصور المتحركة في الصفحة الرئيسية
+                        </h4>
+                        <p class="text-xs text-stone-500 mb-4 max-w-xl">أضيفي صورة أو صورتين، وستظهر تلقائياً بشكل متحرك أعلى الصفحة. ترك المكان فارغاً يُبقيه فارغاً.</p>
+                        <div class="space-y-3 max-w-xl">
+                            <div class="flex items-center gap-3 flex-wrap border border-stone-100 rounded-xl p-3">
+                                <img id="slider-thumb-0" src="" alt="" class="hl-slot-thumb hidden">
+                                <div id="slider-thumb-empty-0" class="hl-slot-thumb empty"><i class="fa-regular fa-image"></i></div>
+                                <div class="flex-1 min-w-[150px]">
+                                    <div class="text-xs font-black text-stone-800 mb-1">الصورة الأولى</div>
+                                    <span id="slider-status-0" class="text-[11px] text-stone-400">المكان فارغ حالياً.</span>
+                                    <div class="flex gap-2 mt-2">
+                                        <label class="inline-flex items-center gap-1.5 bg-white border border-dashed border-blue-300 hover:bg-blue-50 text-blue-800 font-bold text-xs px-3 py-2 rounded-xl cursor-pointer transition">
+                                            <i class="fa-solid fa-cloud-arrow-up"></i> اختيار صورة
+                                            <input type="file" accept="image/*" class="hidden" onchange="handleSliderFileSelect(event, 0)">
+                                        </label>
+                                        <button type="button" onclick="removeSliderImage(0)" class="inline-flex items-center gap-1.5 bg-white border border-stone-200 hover:bg-stone-50 text-stone-600 font-bold text-xs px-3 py-2 rounded-xl"><i class="fa-solid fa-trash-can"></i> إزالة</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 flex-wrap border border-stone-100 rounded-xl p-3">
+                                <img id="slider-thumb-1" src="" alt="" class="hl-slot-thumb hidden">
+                                <div id="slider-thumb-empty-1" class="hl-slot-thumb empty"><i class="fa-regular fa-image"></i></div>
+                                <div class="flex-1 min-w-[150px]">
+                                    <div class="text-xs font-black text-stone-800 mb-1">الصورة الثانية</div>
+                                    <span id="slider-status-1" class="text-[11px] text-stone-400">المكان فارغ حالياً.</span>
+                                    <div class="flex gap-2 mt-2">
+                                        <label class="inline-flex items-center gap-1.5 bg-white border border-dashed border-blue-300 hover:bg-blue-50 text-blue-800 font-bold text-xs px-3 py-2 rounded-xl cursor-pointer transition">
+                                            <i class="fa-solid fa-cloud-arrow-up"></i> اختيار صورة
+                                            <input type="file" accept="image/*" class="hidden" onchange="handleSliderFileSelect(event, 1)">
+                                        </label>
+                                        <button type="button" onclick="removeSliderImage(1)" class="inline-flex items-center gap-1.5 bg-white border border-stone-200 hover:bg-stone-50 text-stone-600 font-bold text-xs px-3 py-2 rounded-xl"><i class="fa-solid fa-trash-can"></i> إزالة</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="saveSliderImages()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow">حفظ الصور</button>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
                         <h4 class="text-base font-black text-stone-900 mb-2 flex items-center gap-2">
                             <i class="fa-solid fa-stethoscope text-blue-700"></i> فحص الاتصال بقاعدة البيانات
                         </h4>
@@ -1451,8 +1567,8 @@
         };
 
         // Cloudinary: رفع الصور مباشرة من جهاز المستخدم بدون Firebase Storage
-        const CLOUDINARY_CLOUD_NAME = "jfwuylur";
-        const CLOUDINARY_UPLOAD_PRESET = "athar-e00bf1";
+        const CLOUDINARY_CLOUD_NAME = "dnqgbond";
+        const CLOUDINARY_UPLOAD_PRESET = "higlitie";
         const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
  
         const $ = (id) => document.getElementById(id);
@@ -2462,7 +2578,7 @@
                 </tr>`).join('');
         }
  
-        /* ================= رفع الصور إلى Firebase Storage ================= */
+        /* ================= رفع الصور إلى Cloudinary ================= */
         const MAX_IMAGES = 1;
         let productImages = Array(MAX_IMAGES).fill('');
         let uploadingSlots = Array(MAX_IMAGES).fill(false);
@@ -2519,7 +2635,8 @@
                 const msg = err.message === 'cloudinary-config-missing' ? 'إعدادات Cloudinary غير موجودة في الكود.'
                     : err.message === 'image-too-large' ? 'حجم الصورة كبير جداً. الحد الأقصى 10MB.'
                     : err.message === 'invalid-image' ? 'الملف المختار ليس صورة صالحة.'
-                    : `تعذر رفع الصورة إلى Cloudinary: ${err.message || 'تحققي من الاتصال وإعدادات Upload Preset athar-e00bf1.'}`;
+                    : err.message === 'upload-timeout' ? 'انتهت مهلة رفع الصورة. تحققي من الإنترنت ثم أعيدي المحاولة.'
+                    : `تعذر رفع الصورة إلى Cloudinary: ${err.message || 'تحققي من الاتصال وإعدادات Upload Preset higlitie.'}`;
                 showCustomAlert('خطأ في رفع الصورة', msg, true);
             } finally {
                 uploadingSlots[idx] = false;
@@ -2691,32 +2808,68 @@
         }
 
         async function uploadImageToCloudinary(file, folder, options = {}) {
-            if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET) {
+            if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET || !CLOUDINARY_UPLOAD_URL) {
                 throw new Error('cloudinary-config-missing');
             }
-            if (!file || !file.type.startsWith('image/')) {
+            if (!file || typeof file.type !== 'string' || !file.type.startsWith('image/')) {
+                throw new Error('invalid-image');
+            }
+            if (!Number.isFinite(file.size) || file.size <= 0) {
                 throw new Error('invalid-image');
             }
             if (file.size > 10 * 1024 * 1024) {
                 throw new Error('image-too-large');
             }
 
+            // ضغط الصورة قبل الرفع لتقليل استهلاك البيانات مع الاحتفاظ بجودتها.
             const { blob } = await compressImageFile(file, options);
+            if (!blob || !blob.size) throw new Error('image-compression-failed');
+
             const formData = new FormData();
-            formData.append('file', blob, `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`);
+            const safeFolder = String(folder || 'uploads').replace(/[^a-zA-Z0-9_-]/g, '-');
+            const uploadFileName = `higlitie-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
+            formData.append('file', blob, uploadFileName);
             formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-            formData.append('folder', `athar/${folder || 'uploads'}`);
+            formData.append('folder', `athar/${safeFolder}`);
 
-            const response = await withTimeout(
-                fetch(CLOUDINARY_UPLOAD_URL, { method: 'POST', body: formData }),
-                30000
-            );
-            const data = await response.json();
+            const controller = new AbortController();
+            let timeoutId;
+            let response;
+            try {
+                response = await Promise.race([
+                    fetch(CLOUDINARY_UPLOAD_URL, {
+                        method: 'POST',
+                        body: formData,
+                        signal: controller.signal
+                    }),
+                    new Promise((_, reject) => {
+                        timeoutId = setTimeout(() => {
+                            controller.abort();
+                            reject(new Error('upload-timeout'));
+                        }, 45000);
+                    })
+                ]);
+            } catch (err) {
+                if (err?.name === 'AbortError' || err?.message === 'upload-timeout') {
+                    throw new Error('upload-timeout');
+                }
+                throw err;
+            } finally {
+                clearTimeout(timeoutId);
+            }
 
-            if (!response.ok || !data.secure_url) {
-                const message = data?.error?.message || 'cloudinary-upload-failed';
+            let data;
+            try {
+                data = await response.json();
+            } catch (_) {
+                throw new Error('invalid-cloudinary-response');
+            }
+
+            if (!response.ok) {
+                const message = data?.error?.message || `cloudinary-http-${response.status}`;
                 throw new Error(message);
             }
+            if (!data?.secure_url) throw new Error('cloudinary-url-missing');
 
             return { url: data.secure_url, publicId: data.public_id || '' };
         }
@@ -2743,7 +2896,7 @@
                 preview.src = '';
                 preview.classList.add('hidden');
                 status.textContent = 'تعذر رفع الصورة.';
-                showCustomAlert('خطأ في رفع الصورة', 'تعذر رفع صورة التصنيف إلى Cloudinary. تأكدي من أن Upload Preset باسم athar-e00bf1 مضبوط على Unsigned.', true);
+                showCustomAlert('خطأ في رفع الصورة', 'تعذر رفع صورة التصنيف إلى Cloudinary. تأكدي من أن Upload Preset باسم higlitie مضبوط على Unsigned، ثم أعيدي المحاولة.', true);
             } finally {
                 URL.revokeObjectURL(localPreview);
                 imageUploadBusy = false;
@@ -2772,7 +2925,7 @@
                 preview.src = '';
                 preview.classList.add('hidden');
                 status.textContent = 'تعذر رفع الشعار.';
-                showCustomAlert('خطأ في رفع الشعار', 'تعذر رفع الشعار إلى Cloudinary. تأكدي من أن Upload Preset باسم athar-e00bf1 مضبوط على Unsigned.', true);
+                showCustomAlert('خطأ في رفع الشعار', 'تعذر رفع الشعار إلى Cloudinary. تأكدي من أن Upload Preset باسم higlitie مضبوط على Unsigned، ثم أعيدي المحاولة.', true);
             } finally {
                 URL.revokeObjectURL(localPreview);
                 imageUploadBusy = false;
@@ -3094,6 +3247,70 @@
                 .catch(saveError);
         }
  
+        /* ================= الصور المتحركة (السلايدر) ================= */
+        let sliderImages = Array.isArray(cache.slider) ? [cache.slider[0] || '', cache.slider[1] || ''] : ['', ''];
+        let sliderDraft = sliderImages.slice();
+        function refreshSliderAdminUI() {
+            [0, 1].forEach((i) => {
+                const url = sliderDraft[i] || '';
+                const thumb = $(`slider-thumb-${i}`), empty = $(`slider-thumb-empty-${i}`), st = $(`slider-status-${i}`);
+                if (!thumb) return;
+                if (url) { thumb.src = url; thumb.classList.remove('hidden'); empty.classList.add('hidden'); }
+                else { thumb.removeAttribute('src'); thumb.classList.add('hidden'); empty.classList.remove('hidden'); }
+                if (st) st.textContent = url ? (url === sliderImages[i] ? 'الصورة الحالية المحفوظة.' : 'تم الرفع ✓ — اضغطي «حفظ الصور» للتطبيق.') : 'المكان فارغ حالياً.';
+            });
+        }
+        function applySlider() {
+            sliderDraft = sliderImages.slice();
+            if (window.highlightSliderRender) window.highlightSliderRender(sliderImages);
+            refreshSliderAdminUI();
+        }
+        async function handleSliderFileSelect(e, idx) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            imageUploadBusy = true;
+            const st = $(`slider-status-${idx}`);
+            const localPreview = URL.createObjectURL(file);
+            const thumb = $(`slider-thumb-${idx}`);
+            thumb.src = localPreview; thumb.classList.remove('hidden'); $(`slider-thumb-empty-${idx}`).classList.add('hidden');
+            st.textContent = 'جارٍ رفع الصورة إلى Cloudinary...';
+            try {
+                const result = await uploadImageToCloudinary(file, 'slider', { maxDim: 1800, quality: 0.85, whitenBg: false });
+                sliderDraft[idx] = result.url;
+                thumb.src = result.url;
+                st.textContent = 'تم الرفع ✓ — اضغطي «حفظ الصور» للتطبيق.';
+            } catch (err) {
+                console.error('Cloudinary slider upload failed:', err);
+                refreshSliderAdminUI();
+                st.textContent = 'تعذر رفع الصورة.';
+                showCustomAlert('خطأ في رفع الصورة', 'تعذر رفع الصورة إلى Cloudinary. تأكدي من أن Upload Preset باسم higlitie مضبوط على Unsigned، ثم أعيدي المحاولة.', true);
+            } finally {
+                URL.revokeObjectURL(localPreview);
+                e.target.value = '';
+                imageUploadBusy = false;
+            }
+        }
+        function removeSliderImage(idx) {
+            sliderDraft[idx] = '';
+            refreshSliderAdminUI();
+        }
+        function saveSliderImages() {
+            if (imageUploadBusy) {
+                showCustomAlert('انتظري قليلاً', 'الصورة لسا قيد الرفع إلى Cloudinary.', true);
+                return;
+            }
+            if (isOfflineMode || !db) {
+                showCustomAlert('لا يمكن حفظ الصور الآن', 'حفظ الصور يحتاج اتصالاً بـ Firebase. أعيدي المحاولة عند توفر الاتصال.', true);
+                return;
+            }
+            sliderImages = sliderDraft.slice();
+            persist('slider', sliderImages);
+            applySlider();
+            fb.setDoc(fb.doc(db, 'store_settings', 'general'), { sliderImages }, { merge: true })
+                .then(() => showCustomAlert('نجاح', 'تم حفظ الصور المتحركة بنجاح.', false))
+                .catch(saveError);
+        }
+
         let alertConfirmAction = null;
  
         // options: { steps: [نص1, نص2, ...], confirmText: 'حسناً', onConfirm: fn }
@@ -3349,6 +3566,14 @@
                     persist('logo', logoUrl);
                     applyLogo();
                 }
+                if (Array.isArray(d.sliderImages)) {
+                    const incoming = [d.sliderImages[0] || '', d.sliderImages[1] || ''];
+                    if (JSON.stringify(incoming) !== JSON.stringify(sliderImages)) {
+                        sliderImages = incoming;
+                        persist('slider', sliderImages);
+                        applySlider();
+                    }
+                }
                 if (d.discount && JSON.stringify(d.discount) !== JSON.stringify(storeDiscount)) {
                     storeDiscount = d.discount;
                     persist('discount', storeDiscount);
@@ -3429,6 +3654,7 @@
 
         /* ================= التشغيل ================= */
         applyLogo();
+        applySlider();
         renderImageSlots();
         renderCategories();
         renderProducts();
