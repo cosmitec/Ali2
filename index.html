@@ -411,7 +411,7 @@
             --hl-ink:#23494a;
         }
         html,body{background:#fff!important;color:var(--hl-ink)!important}
-        body{background:linear-gradient(180deg,#ffffff 0,#f7fcfb 58%,#ffffff 100%) fixed!important}
+        body{background:#fff!important}
         body header.sticky,
         body header.sticky .header-top-row,
         body header.sticky .header-search-strip{background:rgba(255,255,255,.97)!important}
@@ -786,22 +786,22 @@
     <style id="highlight-light-onion-background">
         /* خلفية مشمشية فاتحة للموقع بالكامل مع الإبقاء على الفيروزي كلون أساسي للعناصر */
         html, body {
-            background-color: #fff1e3 !important;
+            background-color: #ffffff !important;
         }
         body {
-            background: linear-gradient(180deg, #fff6ec 0%, #ffecd9 52%, #fff3e6 100%) fixed !important;
+            background: #ffffff fixed !important;
         }
         body > main {
             background: transparent !important;
         }
         #welcome {
-            background: linear-gradient(145deg, #fff8f0 0%, #ffe9d4 100%) !important;
+            background: #ffffff !important;
         }
         #welcome .w-tile {
             border: 1px solid #f5d6b8 !important;
         }
         body header.sticky {
-            background: rgba(255, 250, 244, .97) !important;
+            background: #ffffff !important;
         }
         body header.sticky .header-top-row,
         body header.sticky .header-search-strip {
@@ -811,7 +811,7 @@
         /* ===== أماكن الصور المتحركة (فارغة حتى تضاف الصور من لوحة التحكم) ===== */
         .highlight-slider {
             border-color: #f3d2b2 !important;
-            background: linear-gradient(135deg, #fff4e8, #ffe8d2) !important;
+            background: #ffffff !important;
             box-shadow: 0 16px 34px -22px rgba(214, 140, 80, .35) !important;
         }
         .highlight-slider.is-empty { border: 2px dashed #efc79f !important; }
@@ -826,11 +826,11 @@
         .highlight-dot.hl-hide { display: none; }
         .hl-slot-thumb {
             width: 120px; height: 72px; border-radius: 12px; border: 1px dashed #f0c9a3;
-            background: #fff4e8; object-fit: cover; flex-shrink: 0;
+            background: #ffffff; object-fit: cover; flex-shrink: 0;
         }
         .hl-slot-thumb.empty { display: flex; align-items: center; justify-content: center; color: #e8b88a; font-size: 1.4rem; }
         /* ===== توحيد كل الأجزاء بنفس اللون البصلي/المشمشي الفاتح ===== */
-        :root { --hl-apr: #fff1e3; --hl-apr-line: #f3d2b2; --hl-apr-deep: #ffe6cc; }
+        :root { --hl-apr: #ffffff; --hl-apr-line: #f3d2b2; --hl-apr-deep: #f3f3f3; }
         body header.sticky,
         body header.sticky .header-top-row,
         body header.sticky .header-search-strip { background: var(--hl-apr) !important; }
@@ -850,14 +850,14 @@
             background-color: var(--hl-apr) !important;
             background-image: none !important;
         }
-        body [class~="bg-white/90"] { background-color: rgba(255,241,227,.9) !important; }
-        body [class~="bg-white/70"] { background-color: rgba(255,241,227,.7) !important; }
+        body [class~="bg-white/90"] { background-color: rgba(255,255,255,.9) !important; }
+        body [class~="bg-white/70"] { background-color: rgba(255,255,255,.7) !important; }
         body .sub-btn.active { background: var(--hl-apr-deep) !important; }
         body .border-blue-100, body .border-blue-200, body .border-stone-200, body .border-stone-100 { border-color: var(--hl-apr-line) !important; }
         body .prod-card, body #products-grid > .prod-card { border-color: var(--hl-apr-line) !important; box-shadow: 0 8px 22px -16px rgba(214,140,80,.45) !important; }
         body #subcats-container, body .explore-banner { border-color: var(--hl-apr-line) !important; }
         .sk, #products-grid .pc-img:has(img.img-fade:not(.loaded)) {
-            background: linear-gradient(90deg, #ffe6cc 25%, #fff6ec 50%, #ffe6cc 75%) !important;
+            background: linear-gradient(90deg, #f1f1f1 25%, #fafafa 50%, #f1f1f1 75%) !important;
             background-size: 200% 100% !important;
         }
 
@@ -902,6 +902,94 @@
         /* إخفاء أي أثر مشمشي حول صور المنتجات: عنصر الصورة نفسه أبيض */
         body img.bg-white, body .prod-card img, body #product-details-modal img {
             background-color: #fff !important;
+        }
+        /* ===== تصنيفات أكبر وحركة سلسة ===== */
+        body #categories-container {
+            gap: 18px !important;
+            padding: 6px 4px 16px !important;
+            scroll-behavior: smooth;
+            scroll-snap-type: x proximity;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+        }
+        body #categories-container .cat-btn {
+            min-width: 112px !important; max-width: 128px !important;
+            gap: 10px !important; scroll-snap-align: center;
+            opacity: .85;
+            transition: transform .4s cubic-bezier(.22,.9,.3,1), opacity .3s ease;
+            animation: cat-in .55s cubic-bezier(.22,.9,.3,1) both;
+            will-change: transform;
+        }
+        body #categories-container .cat-btn:nth-child(2) { animation-delay: .05s; }
+        body #categories-container .cat-btn:nth-child(3) { animation-delay: .10s; }
+        body #categories-container .cat-btn:nth-child(4) { animation-delay: .15s; }
+        body #categories-container .cat-btn:nth-child(5) { animation-delay: .20s; }
+        body #categories-container .cat-btn:nth-child(n+6) { animation-delay: .25s; }
+        @keyframes cat-in { from { opacity: 0; transform: translateY(14px) scale(.92); } to { opacity: .85; transform: none; } }
+        body #categories-container .cat-btn:hover { opacity: 1; transform: translateY(-4px); }
+        body #categories-container .cat-btn:active { transform: scale(.95); }
+        body #categories-container .cat-btn.active { opacity: 1; transform: scale(1.07); animation: none; }
+        body #categories-container .cat-thumb {
+            width: 100px !important; height: 100px !important; border-radius: 26px !important;
+            transition: box-shadow .4s ease, border-color .3s ease, transform .4s cubic-bezier(.22,.9,.3,1);
+        }
+        body #categories-container .cat-thumb img { transition: transform .5s cubic-bezier(.22,.9,.3,1); }
+        body #categories-container .cat-btn:hover .cat-thumb img { transform: scale(1.08); }
+        body #categories-container .cat-label {
+            font-size: 14px !important; line-height: 1.5 !important; font-weight: 800 !important;
+            transition: color .3s ease;
+        }
+        @media (max-width: 640px) {
+            body #categories-container { gap: 14px !important; }
+            body #categories-container .cat-btn { min-width: 92px !important; max-width: 104px !important; }
+            body #categories-container .cat-thumb { width: 82px !important; height: 82px !important; border-radius: 22px !important; }
+            body #categories-container .cat-label { font-size: 12.5px !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            body #categories-container { scroll-behavior: auto; }
+            body #categories-container .cat-btn { animation: none; transition: none; }
+        }
+
+        /* ===== معرض صور المنتج في نافذة التفاصيل ===== */
+        .pd-thumbs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        .pd-thumb {
+            width: 58px; height: 58px; padding: 2px; border-radius: 14px; border: 2px solid #ececec;
+            background: #fff; overflow: hidden; opacity: .75;
+            transition: border-color .25s ease, opacity .25s ease, transform .25s ease;
+        }
+        .pd-thumb img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+        .pd-thumb:hover { opacity: 1; transform: translateY(-2px); }
+        .pd-thumb.active { border-color: #26b1a8; opacity: 1; }
+        #product-details-image { transition: opacity .25s ease; }
+        #product-details-image.swap { opacity: 0; }
+        .hl-disc-cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+        .hl-disc-cat { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid #e7e0d8; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; background: #fff; }
+        .hl-disc-cat input { accent-color: #26b1a8; width: 16px; height: 16px; }
+        /* ===== زر السلة وشريط التصنيفات الفرعية بنفس لون زر «أضف» ===== */
+        body button[onclick="openCartModal()"] {
+            background: linear-gradient(135deg, #64c8bf, #278f89) !important;
+            border-color: transparent !important;
+            color: #fff !important;
+            box-shadow: 0 6px 14px -6px rgba(35,127,124,.45) !important;
+        }
+        body button[onclick="openCartModal()"]:hover { background: #237f7c !important; }
+        body button[onclick="openCartModal()"] i,
+        body button[onclick="openCartModal()"] > span:not(#cart-badge) { color: #fff !important; }
+        body #cart-badge {
+            background: #fff !important; background-image: none !important;
+            color: #237f7c !important; border: 2px solid #278f89; box-shadow: 0 2px 6px rgba(0,0,0,.15) !important;
+        }
+        body #subcats-container {
+            background: linear-gradient(135deg, #64c8bf, #278f89) !important;
+            background-color: #278f89 !important;
+            border-color: transparent !important;
+            box-shadow: 0 6px 14px -6px rgba(35,127,124,.4) !important;
+        }
+        body #subcats-container .sub-btn { color: #fff !important; background: transparent !important; transition: background-color .3s ease, color .3s ease, transform .25s ease; }
+        body #subcats-container .sub-btn:hover { background: rgba(255,255,255,.22) !important; }
+        body #subcats-container .sub-btn.active {
+            background: #fff !important; color: #237f7c !important; border: 0 !important;
+            box-shadow: 0 3px 10px rgba(0,0,0,.14) !important;
         }
     </style>
 
@@ -1173,8 +1261,9 @@
                 </button>
             </div>
             <div class="p-4 sm:p-6 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-                <div class="rounded-2xl bg-white border border-blue-100 p-3 flex items-center justify-center min-h-[230px]">
+                <div class="rounded-2xl bg-white border border-blue-100 p-3 flex flex-col items-center justify-center gap-3 min-h-[230px]">
                     <img id="product-details-image" src="" alt="صورة المنتج" class="w-full max-h-[360px] object-contain rounded-xl" onerror="imgErr(this,'prod')">
+                    <div id="product-details-thumbs" class="pd-thumbs hidden"></div>
                 </div>
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-wrap gap-2">
@@ -1326,11 +1415,11 @@
                         <form id="product-form" onsubmit="saveProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             <input type="hidden" id="edit-product-id">
 
-                            <!-- صورة واحدة لكل منتج -->
+                            <!-- حتى 4 صور لكل منتج -->
                             <div class="sm:col-span-2 lg:col-span-3">
-                                <label class="block text-xs font-bold text-stone-700 mb-1">صورة المنتج:</label>
-                                <div id="p-image-slots" class="grid grid-cols-1 gap-3 max-w-[170px]"></div>
-                                <p class="text-[11px] text-stone-400 mt-2">يمكن رفع صورة واحدة فقط لكل منتج، وتظهر في بطاقة المنتج والسلة ونافذة التفاصيل.</p>
+                                <label class="block text-xs font-bold text-stone-700 mb-1">صور المنتج (حتى 4 صور):</label>
+                                <div id="p-image-slots" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-[560px]"></div>
+                                <p class="text-[11px] text-stone-400 mt-2">يمكن رفع حتى 4 صور لكل منتج. الصورة الأولى هي الرئيسية (تظهر في البطاقة والسلة)، وكل الصور تظهر في نافذة التفاصيل.</p>
                             </div>
 
                             <!-- اسم المنتج ثانياً -->
@@ -1478,6 +1567,17 @@
                                     <option value="percentage">نسبة مئوية (%) - يظهر على المنتجات</option>
                                     <option value="fixed">مبلغ ثابت (د.ع) - يخصم من السلة النهائية فقط</option>
                                 </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-stone-700 mb-1">مكان تطبيق الخصم:</label>
+                                <select id="admin-discount-scope" onchange="toggleDiscountScope()" class="w-full px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm">
+                                    <option value="all">كل المنتجات</option>
+                                    <option value="categories">تصنيفات محددة فقط</option>
+                                </select>
+                                <div id="admin-discount-cats-wrap" class="hidden mt-3">
+                                    <p class="text-[11px] text-stone-500 mb-2">اختاري التصنيفات التي يشملها الخصم:</p>
+                                    <div id="admin-discount-cats" class="hl-disc-cats"></div>
+                                </div>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-stone-700 mb-1">قيمة الخصم (النسبة أو المبلغ):</label>
@@ -1746,14 +1846,34 @@
             const v = Number(storeDiscount.value) || 0;
             return v > 0 ? Math.min(v, 100) : 0;
         }
+        // هل الخصم ينطبق على هذا المنتج؟ (كل المنتجات أو تصنيفات محددة)
+        function discountApplies(p) {
+            if (!storeDiscount || !storeDiscount.type || storeDiscount.type === 'none') return false;
+            if (storeDiscount.scope === 'categories') {
+                const arr = Array.isArray(storeDiscount.categories) ? storeDiscount.categories : [];
+                return !!p && arr.includes(p.category);
+            }
+            return true;
+        }
+        function discountFor(p) { return discountApplies(p) ? activePercent() : 0; }
+        function discountForId(id) {
+            const pr = products.find((x) => x.id === id);
+            if (pr) return discountFor(pr);
+            return storeDiscount && storeDiscount.scope === 'categories' ? 0 : activePercent();
+        }
         function calcDiscount(subtotal) {
             const v = Number(storeDiscount.value) || 0;
+            if (!(subtotal > 0 && v > 0)) return 0;
+            let elig = 0;
+            cart.forEach((i) => {
+                const pr = products.find((x) => x.id === i.id);
+                const ok = pr ? discountApplies(pr) : !(storeDiscount.scope === 'categories');
+                if (ok) elig += i.price * i.quantity;
+            });
             let d = 0;
-            if (subtotal > 0 && v > 0) {
-                if (storeDiscount.type === 'percentage') d = Math.round(subtotal * Math.min(v, 100) / 100);
-                else if (storeDiscount.type === 'fixed') d = v;
-            }
-            return Math.min(d, subtotal);
+            if (storeDiscount.type === 'percentage') d = Math.round(elig * Math.min(v, 100) / 100);
+            else if (storeDiscount.type === 'fixed') d = elig > 0 ? v : 0;
+            return Math.min(d, elig, subtotal);
         }
         function getShippingFee() {
             const sel = $('customer-province');
@@ -1813,7 +1933,11 @@
  
         function updateCategoryActive() {
             $('categories-container').querySelectorAll('.cat-btn').forEach((b) => {
-                b.classList.toggle('active', b.dataset.cat === currentSelectedCategory);
+                const on = b.dataset.cat === currentSelectedCategory;
+                b.classList.toggle('active', on);
+                if (on && b.scrollIntoView) {
+                    try { b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) {}
+                }
             });
         }
  
@@ -1850,7 +1974,7 @@
         function productCard(p, idx) {
             const eager = idx !== undefined && idx < 8;   // أول 8 صور تتحمل فوراً
             const price = Number(p.price) || 0;
-            const dv = activePercent();
+            const dv = discountFor(p);
             let badge = '';
             let priceHtml = `<span class="font-black text-blue-800 text-sm leading-5">${price.toLocaleString()} د.ع</span>`;
  
@@ -2170,6 +2294,26 @@
             }
             image.alt = product.name || 'صورة المنتج';
 
+            const gallery = getImages(product);
+            const thumbs = $('product-details-thumbs');
+            if (thumbs) {
+                if (gallery.length > 1) {
+                    thumbs.classList.remove('hidden');
+                    thumbs.innerHTML = gallery.map((u, i) => `<button type="button" class="pd-thumb${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="صورة ${i + 1}"><img src="${esc(cldUrl(u, 160))}" alt=""></button>`).join('');
+                    thumbs.onclick = (ev) => {
+                        const btn = ev.target.closest('.pd-thumb');
+                        if (!btn) return;
+                        const u = gallery[Number(btn.dataset.i)];
+                        thumbs.querySelectorAll('.pd-thumb').forEach((x) => x.classList.toggle('active', x === btn));
+                        image.classList.add('swap');
+                        setTimeout(() => { image.dataset.orig = u; image.src = cldUrl(u, 900); image.classList.remove('swap'); }, 160);
+                    };
+                } else {
+                    thumbs.classList.add('hidden');
+                    thumbs.innerHTML = '';
+                }
+            }
+
             $('product-details-title').textContent = 'تفاصيل المنتج';
             $('product-details-name').textContent = product.name || 'منتج';
             $('product-details-description').textContent = product.description || 'لا يتوفر وصف لهذا المنتج حالياً.';
@@ -2179,7 +2323,7 @@
             sub.classList.toggle('hidden', !product.subcategory);
 
             const price = Number(product.price) || 0;
-            const discountPercent = activePercent();
+            const discountPercent = discountFor(product);
             const priceBox = $('product-details-price');
             if (discountPercent > 0) {
                 const discounted = Math.round(price - price * discountPercent / 100);
@@ -2277,8 +2421,8 @@
             if (cart.length === 0) {
                 container.innerHTML = '<p class="text-center text-sm text-stone-500 py-6">السلة فارغة حالياً.</p>';
             } else {
-                const dv = activePercent();
                 container.innerHTML = cart.map((item) => {
+                    const dv = discountForId(item.id);
                     let displayPrice = item.price;
                     let original = '';
                     let priceClass = 'text-blue-700';
@@ -2566,6 +2710,9 @@
                 $('admin-discount-type').value = storeDiscount.type || 'none';
                 $('admin-discount-value').value = storeDiscount.value || 0;
                 $('admin-discount-title').value = storeDiscount.title || 'خصم خاص';
+                $('admin-discount-scope').value = storeDiscount.scope === 'categories' ? 'categories' : 'all';
+                renderDiscountCats(Array.isArray(storeDiscount.categories) ? storeDiscount.categories : []);
+                toggleDiscountScope();
             }
         }
  
@@ -2607,7 +2754,7 @@
         }
  
         /* ================= رفع الصور إلى Cloudinary ================= */
-        const MAX_IMAGES = 1;
+        const MAX_IMAGES = 4;
         let productImages = Array(MAX_IMAGES).fill('');
         let uploadingSlots = Array(MAX_IMAGES).fill(false);
 
@@ -2626,7 +2773,7 @@
                         ${src ? `<img src="${esc(cldUrl(src, 300))}" data-orig="${esc(src)}" onerror="imgErr(this,'prod')" class="w-full h-full object-contain">` : `<i class="fa-solid fa-image text-stone-300 text-2xl"></i>`}
                         ${uploadingSlots[i] ? `<div class="absolute inset-0 bg-white/70 flex items-center justify-center"><i class="fa-solid fa-spinner fa-spin text-blue-700 text-lg"></i></div>` : ''}
                         ${src && !uploadingSlots[i] ? `<button type="button" onclick="removeImageSlot(${i})" class="absolute top-1 left-1 w-6 h-6 bg-red-600 text-white rounded-full text-[10px] flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>` : ''}
-                        <span class="absolute bottom-1 right-1 bg-white/90 text-blue-800 text-[10px] font-bold px-1.5 py-0.5 rounded">صورة المنتج</span>
+                        <span class="absolute bottom-1 right-1 bg-white/90 text-blue-800 text-[10px] font-bold px-1.5 py-0.5 rounded">${i === 0 ? 'الرئيسية' : 'صورة ' + (i + 1)}</span>
                     </div>
                     <label class="mt-2 w-full flex items-center justify-center gap-1.5 bg-white border border-dashed border-blue-300 hover:bg-blue-50 text-blue-800 font-bold text-xs py-2 rounded-xl cursor-pointer active:scale-95">
                         <i class="fa-solid fa-cloud-arrow-up"></i> ${src ? 'تغيير' : 'رفع'}
@@ -2644,8 +2791,7 @@
         // ترجع صور المنتج (تدعم المنتجات القديمة اللي عندها صورة وحدة)
         function getImages(p) {
             const arr = Array.isArray(p.images) && p.images.length ? p.images : (p.image ? [p.image] : []);
-            // المنتجات القديمة التي تحتوي عدة صور تحتفظ بالصورة الأولى فقط.
-            return arr.filter(Boolean).slice(0, 1);
+            return arr.filter(Boolean).slice(0, MAX_IMAGES);
         }
 
         async function handleImageFileSelect(e, idx) {
@@ -3080,7 +3226,7 @@
                 price: Number(($('p-price').value || '').replace(/,/g, '')) || 0,
                 stock: stockRaw === '' ? null : Math.max(0, parseInt(stockRaw, 10) || 0),
                 image: imgs[0] || '',
-                images: imgs.slice(0, 1),
+                images: imgs.slice(0, MAX_IMAGES),
                 description,
             };
             if (!id) data.createdAt = Date.now();
@@ -3229,11 +3375,30 @@
             renderProducts();
         }
  
+        function renderDiscountCats(selected) {
+            const host = $('admin-discount-cats');
+            if (!host) return;
+            const names = categories.filter((c) => c.name !== 'الكل').map((c) => c.name);
+            host.innerHTML = names.length
+                ? names.map((n) => `<label class="hl-disc-cat"><input type="checkbox" value="${esc(n)}"${selected.includes(n) ? ' checked' : ''}> <span>${esc(n)}</span></label>`).join('')
+                : '<p class="text-xs text-stone-400">لا توجد تصنيفات بعد.</p>';
+        }
+        function toggleDiscountScope() {
+            const on = $('admin-discount-scope').value === 'categories';
+            $('admin-discount-cats-wrap').classList.toggle('hidden', !on);
+        }
+
         function saveStoreDiscount() {
             const type = $('admin-discount-type').value;
             const value = parseFloat($('admin-discount-value').value) || 0;
             const title = $('admin-discount-title').value.trim() || 'خصم خاص';
-            storeDiscount = { type, value, title };
+            const scope = $('admin-discount-scope').value === 'categories' ? 'categories' : 'all';
+            const cats = Array.from($('admin-discount-cats').querySelectorAll('input:checked')).map((i) => i.value);
+            if (type !== 'none' && scope === 'categories' && !cats.length) {
+                showCustomAlert('اختاري تصنيفاً', 'حددي تصنيفاً واحداً على الأقل لتطبيق الخصم عليه، أو اختاري «كل المنتجات».', true);
+                return;
+            }
+            storeDiscount = { type, value, title, scope, categories: scope === 'categories' ? cats : [] };
             persist('discount', storeDiscount);
             applyDiscountUI();
             if (!isOfflineMode && db) {
